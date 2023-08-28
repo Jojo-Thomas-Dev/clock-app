@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .clock {
+        height: 300px;
+        width: 300px;
+        background-color: red;
+        border-radius: 50%;
+        color: black;
+        position: relative;
+        left: 50%;
+        top: 300px;
+        z-index: 2;
+        border: 2px solid black;
+    }
+    .dot{
+        background-color: black;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        position: absolute;
+        z-index: 9;
+     
+    }
+
+    .hr{
+        height: 60px;
+        width: 5px;
+        border-radius: 2px;
+        background: black;
+        position: absolute;
+        left: 50%;
+        top: 28%; 
+        z-index: 5;
+        margin-left: -1px;
+        transform-origin: 50% 68px;
+
+    }
+
+    .min{
+        height: 70px;
+        width: 5px;
+        border-radius: 5px;
+        background-color: purple;
+        position: absolute;
+        left: 50%;
+        top: 25%;
+        z-index: 6;
+        margin-left: -2px;
+        transform-origin: 50% 78px;
+    }
+    
+    .sec{
+        background-color: yellow;
+        height: 90px;
+        width: 5px;
+        border-radius: 5px;
+        position: absolute;
+        left: 50%;
+        top: 18%; 
+        margin-left: -1px;
+        transform-origin: 50% 100px;
+        
+
+    } 
+
+    .clock > span{
+        --rotation:0;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        transform: rotate(var(--rotation));
+    }
+    .clock .one{--rotation: 30deg;}
+    .clock .two{--rotation: 60deg;}
+    .clock .three{--rotation: 90deg;}
+    .clock .four{--rotation: 120deg;}
+    .clock .five{--rotation: 150deg;}
+    .clock .six{--rotation: 180deg;}
+    .clock .seven{--rotation: 210deg;}
+    .clock .eight{--rotation: 240deg;}
+    .clock .nine{--rotation: 270deg;}
+    .clock .ten{--rotation: 300deg;}
+    .clock .eleven{--rotation: 330deg;}
+</style>
+<body>
+    <div class="clock">
+        <div class="dot"></div>
+        <div class="hr"></div>
+        <div class="min"></div>
+        <div class="sec"></div>
+        <span class="one">1</span>
+        <span class="two">2</span>
+        <span class="three">3</span>
+        <span class="four">4</span>
+        <span class="five">5</span>
+        <span class="six">6</span>
+        <span class="seven">7</span>
+        <span class="eight">8</span>
+        <span class="nine">9</span>
+        <span class="ten">10</span>
+        <span class="eleven">11</span>
+        <span class="twelve">12</span>
+    </div>
+</body>
+<script>
+    //getting our hands from the DOM 
+    var Hours = document.querySelector(".hr")
+    var Minutes = document.querySelector(".min")
+    var Seconds = document.querySelector(".sec")
+
+    setInterval(()=>{
+        //setting up a date object
+        var date = new Date();
+        
+        //getting individual date 
+        var hr = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+
+        //setting up hand rotation 
+        hrRotate = 30 * hr + min/2;
+        minRotate = 6 * min;
+        secRotate = 6 * sec;
+
+        //animation of rotation 
+        Hours.style.transform= `rotate(${hrRotate}deg)`
+        Minutes.style.transform = `rotate(${minRotate}deg)`
+        Seconds.style.transform = `rotate(${secRotate}deg)`
+
+    },1000)
+</script>
+
+</html>
